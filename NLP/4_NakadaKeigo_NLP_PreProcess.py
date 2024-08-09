@@ -44,10 +44,10 @@ def lemmatize_word(word):
 
 if __name__ == '__main__':
     
-    text = "Natural language processing is fascinating."
+    text = "The quick brown fox jumps over the lazy dog!"
     
     tokenized_words = word_tokenize(text)
-    print(f'Tokenized        : tokenized_words')
+    print(f'Tokenized        : {tokenized_words}')
     
     normalized_words = [normalize_word(word_token) for word_token in tokenized_words]
     normalized_words = remove_list_blank(normalized_words)
@@ -58,4 +58,4 @@ if __name__ == '__main__':
     print(f'Removed Stopwords: {removed_words}')
 
     lemmatized_words = [lemmatize_word(word) for word in removed_words]
-    print(f'Lemmatized       : //lemmatized_words')
+    print(f'Lemmatized       : {lemmatized_words}')

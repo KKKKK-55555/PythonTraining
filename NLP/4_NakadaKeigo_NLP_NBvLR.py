@@ -42,7 +42,7 @@ X_test_tf = tf_transformer.fit_transform(X_test_counts)
 print(X_test_counts.shape)
 
 y_pred = clf_NB.predict(X_test_tf)
-print(f"{f1_score(twenty_test.target, y_pred, average='weighted')}")
+print(f"NB F1 score: {f1_score(twenty_test.target, y_pred, average='weighted'):.3f}")
 
 # LR
 clf_LR = LogisticRegression()
@@ -53,4 +53,4 @@ X_test_tfid = tf_vectorizer.transform(twenty_test.data)
 y_pred = clf_LR.predict(X_test_tfid)
 y_prob = clf_LR.predict_proba(X_test_tfid)
 
-print(f"{f1_score(twenty_test.target, y_pred, average='weighted')}")
+print(f"LR F1 score: {f1_score(twenty_test.target, y_pred, average='weighted'):.3f}")

@@ -12,19 +12,24 @@ X = iris.data
 y = iris.target
 print(f"X.shape{X.shape}")
 
-# PCA
-pca = PCA(n_components=2) # transform into 2d
-X_pca = pca.fit_transform(X)
-print(f"X_pca.shape({X_pca.shape})")
-
 # K-means
 kmeans = KMeans(n_clusters=3, random_state=0)
-kmeans.fit(X_pca)
+kmeans.fit(X)
+pred_class = kmeans.predict(X)
+
+# PCA
+pca = PCA(n_components=2) # transform into 2d
+pca_X = pca.fit_transform(X)
 
 # Plot scatter graph
-scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y, cmap='viridis')
-plt.colorbar(scatter, label='Cluster Level')
-plt.xlabel('PCA Component 1')
-plt.xlabel('PCA Component 2')
-plt.savefig('fig_KmeansPCA.png')
+fig, axs = plt.subplots(1, 2)
+
+axs[0].scatter(pca_X[:,0], pca_X[:,1], c=pred_class, cmap='viridis')
+axs[1].scatter(pca_X[:,0], pca_X[:,1], c=y, cmap='viridis')
+
+for i in range(2):
+    axs[i].set_xlabel('PCA Component 1')
+    axs[i].set_ylabel('PCA Component 2')
+#plt.colorbar(label='Class')
+#plt.savefig('fig_KmeansPCA.png')
 plt.show()

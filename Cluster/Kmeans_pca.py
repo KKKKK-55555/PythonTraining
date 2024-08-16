@@ -12,7 +12,7 @@ X = iris.data
 y = iris.target
 print(f"X.shape{X.shape}")
 
-# K-means clustering
+# K-means
 kmeans = KMeans(n_clusters=3, random_state=0)
 kmeans.fit(X)
 
